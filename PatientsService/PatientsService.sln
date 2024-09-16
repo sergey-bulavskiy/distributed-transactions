@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.App", "PatientsService.App\PatientsService.App.csproj", "{140EE109-3D29-49BD-B9C5-4160C2A8DC56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Persistence", "PatientsService.Persistence\PatientsService.Persistence.csproj", "{720998CD-6CA1-4831-BB1C-D6E2A30978F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Domain", "PatientsService.Domain\PatientsService.Domain.csproj", "{FD890BF7-BB26-4DB4-A899-00F09D2884F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{140EE109-3D29-49BD-B9C5-4160C2A8DC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{140EE109-3D29-49BD-B9C5-4160C2A8DC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{140EE109-3D29-49BD-B9C5-4160C2A8DC56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720998CD-6CA1-4831-BB1C-D6E2A30978F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720998CD-6CA1-4831-BB1C-D6E2A30978F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720998CD-6CA1-4831-BB1C-D6E2A30978F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720998CD-6CA1-4831-BB1C-D6E2A30978F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
