@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDataService.App", "MedicalDataService.App\MedicalDataService.App.csproj", "{62F9FE39-9C4F-4881-9EF4-C2E697B11EAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDataService.Persistence", "MedicalDataService.Persistence\MedicalDataService.Persistence.csproj", "{39C40F69-BDDC-4534-B02B-D7960AEACE3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDataService.Domain", "MedicalDataService.Domain\MedicalDataService.Domain.csproj", "{28014719-ADC7-493B-86C6-3DBF744F7FA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{62F9FE39-9C4F-4881-9EF4-C2E697B11EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F9FE39-9C4F-4881-9EF4-C2E697B11EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F9FE39-9C4F-4881-9EF4-C2E697B11EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C40F69-BDDC-4534-B02B-D7960AEACE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C40F69-BDDC-4534-B02B-D7960AEACE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C40F69-BDDC-4534-B02B-D7960AEACE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C40F69-BDDC-4534-B02B-D7960AEACE3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,9 +1,12 @@
+using MedicalDataService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+SetupDatabase.AddDatabase(builder);
 
 var app = builder.Build();
 
@@ -15,6 +18,8 @@ var app = builder.Build();
 //}
 
 //app.UseHttpsRedirection();
+
+await SetupDatabase.RunMigration(app);
 
 var summaries = new[]
 {
@@ -38,7 +43,10 @@ app.MapGet("/weatherforecast", () =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+namespace MedicalDataService
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
 }
