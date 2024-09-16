@@ -1,5 +1,6 @@
 $ContainerName = "docker.io/sergeybulavskiy/patients-service:latest"
+$ImageName = "patients-service"
 
-docker build -t patients-service -f Dockerfile .
-docker tag patients-service ContainerName
-docker push ContainerName
+docker build -t $ImageName -f Dockerfile .
+docker tag $ImageName $ContainerName
+docker push $ContainerName
