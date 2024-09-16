@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService", "PatientsService\PatientsService.csproj", "{140EE109-3D29-49BD-B9C5-4160C2A8DC56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.App", "PatientsService.App\PatientsService.App.csproj", "{140EE109-3D29-49BD-B9C5-4160C2A8DC56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
