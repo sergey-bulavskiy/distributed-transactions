@@ -1,0 +1,54 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge 
+
+services:
+  medical-data-service:
+    image: docker.io/sergeybulavskiy/medical-data-service:latest
+    depends_on:
+      - "pgdb"
+    container_name: medical-data-service
+    ports:
+      - "5050:5000"
+    build:
+      context: .
+      dockerfile: ../MedicalDataService/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=pgdb;Database=medical_records_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
+    networks:
+      - dev
+
+  patients-service:
+    image: docker.io/sergeybulavskiy/patients-service:latest
+    depends_on:
+      - "pgdb"
+    container_name: patients-service
+    ports:
+      - "6000:5000"
+    build:
+      context: .
+      dockerfile: ../PatientsService/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=pgdb;Database=patients_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
+    networks:
+      - dev
+
+  pgdb:
+    image: postgres:latest
+    container_name: pgdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=employee
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  postgres-volume:
