@@ -20,8 +20,4 @@
       <ProjectReference Include="..\MedicalDataService.Persistence\MedicalDataService.Persistence.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\MedicalDataService.Persistence\MedicalDataService.Persistence.csproj" />
-    </ItemGroup>
-
 </Project>
