@@ -1,7 +1,7 @@
 ﻿using MedicalDataService.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace MedicalDataService;
+namespace MedicalDataService.Setup;
 
 public class SetupDatabase
 {

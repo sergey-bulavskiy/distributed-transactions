@@ -1,4 +1,6 @@
 using MedicalDataService;
+using MedicalDataService.Setup;
+using NSwag.Examples;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,45 +10,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 SetupDatabase.AddDatabase(builder);
 
+builder.Services.AddExampleProviders(typeof(Program).Assembly);
+builder.Services.AddOpenApiDocument((settings, provider) =>
+{
+    settings.AddExamples(provider);
+});
+
+SetupAspNet.AddAspNet(builder);
+
+// Set up your application-specific services here
+SetupServices.AddServices(builder.Services, builder.Configuration, builder.Environment);
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-//{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
 
-//app.UseHttpsRedirection();
 
 await SetupDatabase.RunMigration(app);
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
-
-app.Run();
-
-namespace MedicalDataService
-{
-    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-}
