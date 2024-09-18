@@ -1,4 +1,5 @@
-﻿using PatientsService.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using PatientsService.Domain;
 using PatientsService.Features.Patients.Dto;
 using PatientsService.Persistence;
 
@@ -24,5 +25,14 @@ public class PatientsService(PatientsContext dbContext, ILogger<PatientsService>
         await _dbContext.SaveChangesAsync();
         
         _logger.LogInformation("Successfully finished patient's creation.");
+    }
+
+    public async Task<List<Patient>> GetPatients()
+    {
+        _logger.LogInformation("Returning list of patients.");
+
+        List<Patient> list = await _dbContext.Patients.ToListAsync();
+
+        return list;
     }
 }

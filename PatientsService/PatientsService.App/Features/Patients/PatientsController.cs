@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PatientsService.Domain;
 using PatientsService.Features.Patients.Dto;
 
 namespace PatientsService.Features.Patients;
@@ -13,6 +14,12 @@ public class PatientsController(PatientsService patientsService) : ControllerBas
     public async Task CreatePatient([FromBody] CreatePatientDto createPatientDto)
     {
         await _patientsService.CreatePatient(createPatientDto);
+    }
+
+    [HttpGet]
+    public async Task<List<Patient>> GetPatients()
+    {
+        return await _patientsService.GetPatients();
     }
     
 }
