@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PatientsService.Persistence;
 
-namespace PatientsService;
+namespace PatientsService.Setup;
 
 public class SetupDatabase
 {
