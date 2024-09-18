@@ -1,3 +1,4 @@
+using Frontend.App;
 using Frontend.App.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+SetupServices.AddServices(builder.Services, builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 

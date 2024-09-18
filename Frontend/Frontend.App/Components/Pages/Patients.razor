@@ -1,0 +1,49 @@
+﻿@page "/patients"
+@using Frontend.Http
+@attribute [StreamRendering]
+@inject PatientsServiceClient _patientsServiceClient
+
+<PageTitle>Patients</PageTitle>
+
+<h1>Patients</h1>
+
+@if (_patients == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Date of birth</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var patient in _patients)
+        {
+            <tr>
+                <td>@patient.Id</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.LastName</td>
+                <td>@patient.DateOfBirth</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    
+    private List<PatientDto>? _patients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _patients = await _patientsServiceClient.GetPatients();
+    }
+}

@@ -17,7 +17,7 @@ public class PatientsController(PatientsService patientsService) : ControllerBas
     }
 
     [HttpGet]
-    public async Task<List<Patient>> GetPatients()
+    public async Task<List<PatientDto>> GetPatients()
     {
         return await _patientsService.GetPatients();
     }

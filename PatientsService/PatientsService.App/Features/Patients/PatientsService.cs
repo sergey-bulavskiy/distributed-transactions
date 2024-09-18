@@ -23,16 +23,38 @@ public class PatientsService(PatientsContext dbContext, ILogger<PatientsService>
             createPatientDto.DateOfBirth));
 
         await _dbContext.SaveChangesAsync();
-        
+
         _logger.LogInformation("Successfully finished patient's creation.");
     }
 
-    public async Task<List<Patient>> GetPatients()
+    public async Task<List<PatientDto>> GetPatients()
     {
         _logger.LogInformation("Returning list of patients.");
 
         List<Patient> list = await _dbContext.Patients.ToListAsync();
 
-        return list;
+        return list
+            .Select(p => new PatientDto(p.Id, p.FirstName, p.LastName, p.DateOfBirth))
+            .ToList();
     }
+}
+
+public class PatientDto(Guid id, string firstName, string lastName, DateOnly dateOfBirth)
+{
+    public Guid Id { get; private set; } = id;
+
+    /// <summary>
+    /// First name of the patient. 
+    /// </summary>
+    public string FirstName { get; set; } = firstName;
+
+    /// <summary>
+    /// Last name of the patient.
+    /// </summary>
+    public string LastName { get; set; } = lastName;
+
+    /// <summary>
+    /// Date of birth of the patient.
+    /// </summary>
+    public DateOnly DateOfBirth { get; set; } = dateOfBirth;
 }
