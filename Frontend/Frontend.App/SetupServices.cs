@@ -12,7 +12,8 @@ public static class SetupServices
     {
         services.AddHttpClient<PatientsServiceClient>(client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5000");
+            string? host = configuration.GetSection("PatientsServiceClientSettings").GetValue<string>("Host");
+            client.BaseAddress = new Uri(host);
         });
     }
 }
