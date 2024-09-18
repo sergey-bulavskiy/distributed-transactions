@@ -1,10 +1,23 @@
-version: '3.4'
-
 networks:
   dev:
     driver: bridge 
 
 services:
+  frontend:
+    image: docker.io/sergeybulavskiy/patients-frontend-app:latest
+    depends_on:
+      - "patients-service"
+    container_name: patients-frontend-app
+    ports:
+      - "5500:8080"
+    build:
+      context: .
+      dockerfile: ../Frontend/Dockerfile
+    environment:
+      - PatientsServiceClientSettings__Host=http://patients-service:5000
+    networks:
+      - dev
+
   medical-data-service:
     image: docker.io/sergeybulavskiy/medical-data-service:latest
     depends_on:
@@ -26,7 +39,7 @@ services:
       - "pgdb"
     container_name: patients-service
     ports:
-      - "6000:5000"
+      - "6050:5000"
     build:
       context: .
       dockerfile: ../PatientsService/Dockerfile
