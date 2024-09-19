@@ -1,14 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Libs.Messages;
+using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using PatientsService.Domain;
 using PatientsService.Features.Patients.Dto;
 using PatientsService.Persistence;
 
 namespace PatientsService.Features.Patients;
 
-public class PatientsService(PatientsContext dbContext, ILogger<PatientsService> logger)
+public class PatientsAppService(
+    PatientsContext dbContext,
+    ILogger<PatientsAppService> logger,
+    IPublishEndpoint publishEndpoint)
 {
     private PatientsContext _dbContext = dbContext;
-    private ILogger<PatientsService> _logger = logger;
+    private IPublishEndpoint _publishEndpoint = publishEndpoint;
+    private ILogger<PatientsAppService> _logger = logger;
 
     /// <summary>
     /// Creates patient record in the system,
@@ -23,6 +29,8 @@ public class PatientsService(PatientsContext dbContext, ILogger<PatientsService>
         _dbContext.Patients.Add(patient);
         await _dbContext.SaveChangesAsync();
 
+        await _publishEndpoint.Publish(new CreatePatientMedicalRecord() { Id = patient.Id });
+
         _logger.LogInformation("Successfully finished patient's creation.");
     }
 
@@ -36,24 +44,17 @@ public class PatientsService(PatientsContext dbContext, ILogger<PatientsService>
             .Select(p => new PatientDto(p.Id, p.FirstName, p.LastName, p.DateOfBirth))
             .ToList();
     }
-}
 
-public class PatientDto(Guid id, string firstName, string lastName, DateOnly dateOfBirth)
-{
-    public Guid Id { get; private set; } = id;
+    public async Task UpdateMedicalRecord(Guid patientId, Guid medicalRecordId)
+    {
+        //TODO: Add transactions.
 
-    /// <summary>
-    /// First name of the patient. 
-    /// </summary>
-    public string FirstName { get; set; } = firstName;
+        Patient? patient = await _dbContext.Patients.FirstOrDefaultAsync(p => p.Id == patientId);
 
-    /// <summary>
-    /// Last name of the patient.
-    /// </summary>
-    public string LastName { get; set; } = lastName;
+        if (patient == null)
+            throw new Exception("Patient not found.");
 
-    /// <summary>
-    /// Date of birth of the patient.
-    /// </summary>
-    public DateOnly DateOfBirth { get; set; } = dateOfBirth;
+        patient.MedicalDataId = medicalRecordId;
+        await _dbContext.SaveChangesAsync();
+    }
 }

@@ -25,7 +25,6 @@ SetupServices.AddServices(builder.Services, builder.Configuration, builder.Envir
 
 var app = builder.Build();
 
-
 await SetupDatabase.RunMigration(app);
 SetupAspNet.UseFrontlineServices(app);
 SetupAspNet.UseEndpoints(app);

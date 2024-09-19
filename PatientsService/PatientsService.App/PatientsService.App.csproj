@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Libs\Libs\Libs.csproj" />
+      <ProjectReference Include="..\..\Libs\Messaging\Messaging.csproj" />
       <ProjectReference Include="..\PatientsService.Persistence\PatientsService.Persistence.csproj" />
     </ItemGroup>
 

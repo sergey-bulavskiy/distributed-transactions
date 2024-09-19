@@ -8,5 +8,6 @@ public static class SetupServices
         IWebHostEnvironment environment
     )
     {
+        services.AddScoped<MedicalRecordsService>();
     }
 }

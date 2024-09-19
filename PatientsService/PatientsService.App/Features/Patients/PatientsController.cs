@@ -5,21 +5,21 @@ using PatientsService.Features.Patients.Dto;
 namespace PatientsService.Features.Patients;
 
 [Route("[controller]")]
-public class PatientsController(PatientsService patientsService) : ControllerBase
+public class PatientsController(PatientsAppService patientsAppService) : ControllerBase
 {
-    private readonly PatientsService _patientsService = patientsService;
+    private readonly PatientsAppService _patientsAppService = patientsAppService;
 
 
     [HttpPost]
     public async Task CreatePatient([FromBody] CreatePatientDto createPatientDto)
     {
-        await _patientsService.CreatePatient(createPatientDto);
+        await _patientsAppService.CreatePatient(createPatientDto);
     }
 
     [HttpGet]
     public async Task<List<PatientDto>> GetPatients()
     {
-        return await _patientsService.GetPatients();
+        return await _patientsAppService.GetPatients();
     }
     
 }

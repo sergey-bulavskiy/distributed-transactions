@@ -12,6 +12,6 @@ public static class SetupServices
     {
         services.Configure<RabbitMQSettings>(configuration.GetSection(nameof(RabbitMQSettings)));
         services
-            .AddScoped<Features.Patients.PatientsService>();
+            .AddScoped<Features.Patients.PatientsAppService>();
     }
 }

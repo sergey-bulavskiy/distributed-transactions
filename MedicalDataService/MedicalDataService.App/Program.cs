@@ -12,10 +12,7 @@ builder.Services.AddSwaggerGen();
 SetupDatabase.AddDatabase(builder);
 
 builder.Services.AddExampleProviders(typeof(Program).Assembly);
-builder.Services.AddOpenApiDocument((settings, provider) =>
-{
-    settings.AddExamples(provider);
-});
+builder.Services.AddOpenApiDocument((settings, provider) => { settings.AddExamples(provider); });
 
 SetupAspNet.AddAspNet(builder);
 
@@ -26,9 +23,11 @@ SetupServices.AddServices(builder.Services, builder.Configuration, builder.Envir
 
 var app = builder.Build();
 
-
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
-
 await SetupDatabase.RunMigration(app);
+SetupAspNet.UseFrontlineServices(app);
+SetupAspNet.UseEndpoints(app);
+
+app.UseOpenApi(options => { options.Path = "/swagger/{documentName}/swagger.json"; });
+app.UseSwaggerUi(options => { options.Path = "/swagger"; });
+
+app.Run();

@@ -1,8 +1,8 @@
 ﻿namespace MedicalDataService.Domain;
 
-public class PatientsMedicalRecord
+public class PatientsMedicalRecord(Guid id, Guid patientsId)
 {
-    public Guid Id { get; set; }
-    
-    public Guid PatientsId { get; set; }
+    public Guid Id { get; init; } = id;
+
+    public Guid PatientsId { get; init; } = patientsId;
 }

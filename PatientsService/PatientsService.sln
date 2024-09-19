@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Persistence
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Domain", "PatientsService.Domain\PatientsService.Domain.csproj", "{FD890BF7-BB26-4DB4-A899-00F09D2884F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libs", "..\Libs\Libs\Libs.csproj", "{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging", "..\Libs\Messaging\Messaging.csproj", "{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
