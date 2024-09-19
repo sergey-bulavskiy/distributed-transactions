@@ -19,4 +19,15 @@ public partial class Patients()
         await _patientsServiceClient.CreatePatient(RandomPatientService.GenerateRandomPatient());
         _patients = await _patientsServiceClient.GetPatients();
     }
+
+    private async Task DeleteTopPatient()
+    {
+        var patientToDelete = _patients?.FirstOrDefault();
+
+        if (patientToDelete != null)
+        {
+            await _patientsServiceClient.DeletePatient(patientToDelete.Id);
+            _patients = await _patientsServiceClient.GetPatients();
+        }
+    }
 }

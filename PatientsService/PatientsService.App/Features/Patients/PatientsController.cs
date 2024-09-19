@@ -23,6 +23,7 @@ public class PatientsController(PatientsAppService patientsAppService) : Control
     }
 
     [HttpDelete]
+    [Route("{patientId:guid}")]
     public async Task DeletePatient(Guid patientId)
     {
         await _patientsAppService.DeletePatient(patientId);

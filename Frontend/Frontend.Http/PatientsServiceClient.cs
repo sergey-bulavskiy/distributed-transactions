@@ -19,6 +19,6 @@ public class PatientsServiceClient(HttpClient httpClient)
 
     public async Task DeletePatient(Guid patientId)
     {
-        
+        await _httpClient.DeleteAsync($"/patients/{patientId}");
     }
 }

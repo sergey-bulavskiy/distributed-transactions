@@ -8,10 +8,10 @@
 
 <h1>Patients</h1>
 
-<p>
-    <Button Color="ButtonColor.Primary" Outline="true" @onclick="CreateRandomPatient">Create random patient</Button>
-</p>
-
+<div class="col-sm-12 text-center">
+    <Button Color="ButtonColor.Primary" @onclick="CreateRandomPatient">Create random patient</Button>
+    <Button Color="ButtonColor.Danger"@onclick="DeleteTopPatient">Delete top patient</Button>
+</div>
 @if (_patients == null)
 {
     <p>

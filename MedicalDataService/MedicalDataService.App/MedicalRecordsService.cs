@@ -12,7 +12,7 @@ public class MedicalRecordsService(
     IPublishEndpoint publishEndpoint)
 {
     private readonly MedicalDataContext _medicalDataContext = medicalDataContext;
-    private ILogger<MedicalRecordsService> _logger = logger;
+    private readonly ILogger<MedicalRecordsService> _logger = logger;
     private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
 
     public async Task CreateMedicalRecord(Guid patientsId)
