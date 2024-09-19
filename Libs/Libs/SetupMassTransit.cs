@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using System.Reflection;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,12 @@ public static class SetupMassTransit
         
         services.AddMassTransit(x =>
         {
+            x.SetKebabCaseEndpointNameFormatter();
+            
+            var entryAssembly = Assembly.GetEntryAssembly();
+
+            x.AddConsumers(entryAssembly);
+            
             x.UsingRabbitMq((context,cfg) =>
             {
                 cfg.Host(settings.Host, "/", h => {
