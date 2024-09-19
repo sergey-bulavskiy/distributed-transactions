@@ -1,7 +1,6 @@
 ﻿@page "/patients"
 @using Frontend.Http
 @attribute [StreamRendering]
-@inject PatientsServiceClient _patientsServiceClient
 
 <PageTitle>Patients</PageTitle>
 
@@ -25,7 +24,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var patient in _patients)
+        @foreach (PatientDto patient in _patients)
         {
             <tr>
                 <td>@patient.Id</td>
@@ -36,14 +35,4 @@ else
         }
         </tbody>
     </table>
-}
-
-@code {
-    
-    private List<PatientDto>? _patients;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _patients = await _patientsServiceClient.GetPatients();
-    }
 }
