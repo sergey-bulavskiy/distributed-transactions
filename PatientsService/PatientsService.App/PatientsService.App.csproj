@@ -28,7 +28,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Libs\Messaging\Messaging.csproj" />
+      <ProjectReference Include="..\PatientsService.Http\PatientsService.Http.csproj" />
       <ProjectReference Include="..\PatientsService.Persistence\PatientsService.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\Patients\Dto\" />
     </ItemGroup>
 
 </Project>

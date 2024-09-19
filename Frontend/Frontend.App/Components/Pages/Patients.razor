@@ -1,10 +1,16 @@
 ﻿@page "/patients"
-@using Frontend.Http
+@using PatientsService.Http
 @attribute [StreamRendering]
+
+@rendermode InteractiveServer
 
 <PageTitle>Patients</PageTitle>
 
 <h1>Patients</h1>
+
+<p>
+    <Button Color="ButtonColor.Primary" Outline="true" @onclick="CreateRandomPatient">Create random patient</Button>
+</p>
 
 @if (_patients == null)
 {

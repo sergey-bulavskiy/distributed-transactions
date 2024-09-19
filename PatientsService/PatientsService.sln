@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Domain", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging", "..\Libs\Messaging\Messaging.csproj", "{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Http", "PatientsService.Http\PatientsService.Http.csproj", "{7D3C6F28-96E6-4E1B-B202-67F8CC7428CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3C6F28-96E6-4E1B-B202-67F8CC7428CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3C6F28-96E6-4E1B-B202-67F8CC7428CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3C6F28-96E6-4E1B-B202-67F8CC7428CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3C6F28-96E6-4E1B-B202-67F8CC7428CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

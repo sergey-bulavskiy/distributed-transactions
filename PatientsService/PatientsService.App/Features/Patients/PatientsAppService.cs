@@ -2,7 +2,7 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using PatientsService.Domain;
-using PatientsService.Features.Patients.Dto;
+using PatientsService.Http;
 using PatientsService.Persistence;
 
 namespace PatientsService.Features.Patients;
@@ -56,5 +56,13 @@ public class PatientsAppService(
 
         patient.MedicalDataId = medicalRecordId;
         await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeletePatient(Guid patientId)
+    {
+        _logger.LogInformation("Deleting patient: {id}", patientId);
+
+        await _dbContext.Patients.Where(p => p.Id == patientId).ExecuteDeleteAsync();
+        await _publishEndpoint.Publish(new DeletePatientMedicalRecord(patientId));
     }
 }

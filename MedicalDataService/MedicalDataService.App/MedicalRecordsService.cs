@@ -2,6 +2,7 @@
 using MassTransit;
 using MedicalDataService.Domain;
 using MedicalDataService.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedicalDataService;
 
@@ -22,10 +23,18 @@ public class MedicalRecordsService(
         _medicalDataContext.MedicalRecords.Add(patientsMedicalRecord);
 
         await _medicalDataContext.SaveChangesAsync();
-        
+
         _logger.LogInformation($"Medical record for patient {patientsId} has been created.");
 
         await _publishEndpoint.Publish(
             new MedicalRecordCreated(PatientId: patientsId, MedicalRecordId: medicalRecordId));
+    }
+
+    public async Task DeleteMedicalRecord(Guid patientId)
+    {
+        _logger.LogInformation("Deleting medical record for {id}", patientId);
+
+        await _medicalDataContext.MedicalRecords.Where(x => x.PatientsId == patientId)
+            .ExecuteDeleteAsync();
     }
 }

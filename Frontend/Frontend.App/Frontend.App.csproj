@@ -17,4 +17,8 @@
       <ProjectReference Include="..\Frontend.Http\Frontend.Http.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Blazor.Bootstrap" Version="3.0.0" />
+    </ItemGroup>
+
 </Project>

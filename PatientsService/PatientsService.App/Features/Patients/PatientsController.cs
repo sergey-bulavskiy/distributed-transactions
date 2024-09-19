@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PatientsService.Domain;
-using PatientsService.Features.Patients.Dto;
+using PatientsService.Http;
 
 namespace PatientsService.Features.Patients;
 
@@ -20,6 +20,12 @@ public class PatientsController(PatientsAppService patientsAppService) : Control
     public async Task<List<PatientDto>> GetPatients()
     {
         return await _patientsAppService.GetPatients();
+    }
+
+    [HttpDelete]
+    public async Task DeletePatient(Guid patientId)
+    {
+        await _patientsAppService.DeletePatient(patientId);
     }
     
 }
