@@ -1,4 +1,6 @@
-﻿namespace PatientsService;
+﻿using Libs;
+
+namespace PatientsService;
 
 public static class SetupServices
 {
@@ -8,6 +10,7 @@ public static class SetupServices
         IWebHostEnvironment environment
     )
     {
+        services.Configure<RabbitMQSettings>(configuration.GetSection(nameof(RabbitMQSettings)));
         services
             .AddScoped<Features.Patients.PatientsService>();
     }

@@ -19,9 +19,8 @@ public class PatientsService(PatientsContext dbContext, ILogger<PatientsService>
         _logger.LogInformation("Create patient has started.");
 
         //TODO: Wrap it up in the transaction.
-        _dbContext.Patients.Add(new Patient(createPatientDto.FirstName, createPatientDto.LastName,
-            createPatientDto.DateOfBirth));
-
+        var patient = new Patient(createPatientDto.FirstName, createPatientDto.LastName, createPatientDto.DateOfBirth);
+        _dbContext.Patients.Add(patient);
         await _dbContext.SaveChangesAsync();
 
         _logger.LogInformation("Successfully finished patient's creation.");

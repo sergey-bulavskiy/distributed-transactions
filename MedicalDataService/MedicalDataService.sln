@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDataService.Persiste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDataService.Domain", "MedicalDataService.Domain\MedicalDataService.Domain.csproj", "{28014719-ADC7-493B-86C6-3DBF744F7FA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libs", "..\Libs\Libs\Libs.csproj", "{7B737527-105E-4EC1-A746-0DDF6133D587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28014719-ADC7-493B-86C6-3DBF744F7FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B737527-105E-4EC1-A746-0DDF6133D587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B737527-105E-4EC1-A746-0DDF6133D587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B737527-105E-4EC1-A746-0DDF6133D587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B737527-105E-4EC1-A746-0DDF6133D587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

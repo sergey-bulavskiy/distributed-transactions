@@ -1,3 +1,4 @@
+using Libs;
 using MedicalDataService;
 using MedicalDataService.Setup;
 using NSwag.Examples;
@@ -17,6 +18,8 @@ builder.Services.AddOpenApiDocument((settings, provider) =>
 });
 
 SetupAspNet.AddAspNet(builder);
+
+SetupMassTransit.AddMassTransit(builder.Services, builder.Configuration);
 
 // Set up your application-specific services here
 SetupServices.AddServices(builder.Services, builder.Configuration, builder.Environment);

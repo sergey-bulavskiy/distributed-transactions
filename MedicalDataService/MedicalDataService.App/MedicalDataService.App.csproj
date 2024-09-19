@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Libs\Libs\Libs.csproj" />
       <ProjectReference Include="..\MedicalDataService.Persistence\MedicalDataService.Persistence.csproj" />
     </ItemGroup>
 

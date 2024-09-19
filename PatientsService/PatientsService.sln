@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Persistence
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientsService.Domain", "PatientsService.Domain\PatientsService.Domain.csproj", "{FD890BF7-BB26-4DB4-A899-00F09D2884F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libs", "..\Libs\Libs\Libs.csproj", "{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD890BF7-BB26-4DB4-A899-00F09D2884F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0E29FD-083D-48F8-BFCE-FF4FA4914A8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
