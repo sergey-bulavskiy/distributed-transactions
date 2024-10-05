@@ -10,7 +10,7 @@ public class SetupDatabase
         IServiceCollection services = builder.Services;
         IConfiguration configuration = builder.Configuration;
 
-        var connectionString = configuration.GetConnectionString("patientsDb");
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // this is needed for OpenIdDict and must go before .UseOpenIddict()
         services.AddMemoryCache(options =>
