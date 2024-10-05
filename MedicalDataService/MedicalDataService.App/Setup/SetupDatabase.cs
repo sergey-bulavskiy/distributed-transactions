@@ -10,7 +10,7 @@ public class SetupDatabase
         IServiceCollection services = builder.Services;
         IConfiguration configuration = builder.Configuration;
 
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = configuration.GetConnectionString("medicalDb");
 
         // this is needed for OpenIdDict and must go before .UseOpenIddict()
         services.AddMemoryCache(options =>
@@ -18,9 +18,9 @@ public class SetupDatabase
             options.SizeLimit = null;
         });
 
+        
         services
-            .AddEntityFrameworkNpgsql()
-            .AddDbContext<MedicalDataContext>(
+            .AddDbContextPool<MedicalDataContext>(
                 (provider, opt) =>
                 {
                     opt.UseNpgsql(connectionString);

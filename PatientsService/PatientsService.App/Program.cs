@@ -5,6 +5,8 @@ using PatientsService.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +26,8 @@ SetupMassTransit.AddMassTransit(builder.Services, builder.Configuration);
 SetupServices.AddServices(builder.Services, builder.Configuration, builder.Environment);
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 await SetupDatabase.RunMigration(app);
 SetupAspNet.UseFrontlineServices(app);
