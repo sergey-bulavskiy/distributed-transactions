@@ -10,7 +10,6 @@ public static class SetupServices
         IWebHostEnvironment environment
     )
     {
-        services.Configure<RabbitMQSettings>(configuration.GetSection(nameof(RabbitMQSettings)));
         services
             .AddScoped<Features.Patients.PatientsAppService>();
     }
