@@ -26,6 +26,8 @@ public class SetupDatabase
                     opt.UseNpgsql(connectionString);
                 }
             );
+        
+        builder.EnrichNpgsqlDbContext<MedicalDataContext>();
 
         services
             .AddScoped<Func<MedicalDataContext>>(provider => () => CreateDbContext(provider));
