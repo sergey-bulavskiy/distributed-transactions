@@ -8,18 +8,21 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Aspire.Npgsql" Version="8.2.1" />
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.2.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
         <PackageReference Include="NSwag.Core" Version="14.1.0" />
         <PackageReference Include="NSwag.Examples" Version="1.0.14" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\DistributedTransactionsApp\ServiceDefaults\ServiceDefaults\ServiceDefaults.csproj" />
       <ProjectReference Include="..\..\Libs\Messaging\Messaging.csproj" />
       <ProjectReference Include="..\MedicalDataService.Persistence\MedicalDataService.Persistence.csproj" />
     </ItemGroup>

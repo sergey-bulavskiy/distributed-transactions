@@ -3,6 +3,8 @@ using Frontend.App.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddBlazorBootstrap();
 
 // Add services to the container.
@@ -12,6 +14,8 @@ builder.Services.AddRazorComponents()
 SetupServices.AddServices(builder.Services, builder.Configuration, builder.Environment);
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

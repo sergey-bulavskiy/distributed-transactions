@@ -9,14 +9,6 @@ public static class SetupMassTransit
 {
     public static void AddMassTransit(IServiceCollection services, IConfiguration configuration)
     {
-        IConfigurationSection section = configuration.GetSection("RabbitMQ");
-        services.Configure<RabbitMQSettings>(section);
-
-        RabbitMQSettings? settings = section.Get<RabbitMQSettings>();
-
-        if (settings == null)
-            throw new Exception("Cannot start up mass transit, rabbit mq settings are missing.");
-        
         services.AddMassTransit(x =>
         {
             x.SetKebabCaseEndpointNameFormatter();
@@ -24,14 +16,10 @@ public static class SetupMassTransit
             var entryAssembly = Assembly.GetEntryAssembly();
 
             x.AddConsumers(entryAssembly);
-            
             x.UsingRabbitMq((context,cfg) =>
             {
-                cfg.Host(settings.Host, "/", h => {
-                    h.Username(settings.UserName);
-                    h.Password(settings.Password);
-                });
-
+                var host = configuration.GetConnectionString("RabbitMQConnection");
+                cfg.Host(host);
                 cfg.ConfigureEndpoints(context);
             });
         });

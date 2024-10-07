@@ -14,7 +14,7 @@ services:
       context: .
       dockerfile: ../Frontend/Dockerfile
     environment:
-      - PatientsServiceClientSettings__Host=http://patients-service:5000
+      - Services__patients-data__http=http://patients-service:5000
     networks:
       - dev
 
@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: ../MedicalDataService/Dockerfile
     environment:
-      - RabbitMQ__Host=mt-rabbit-mq
+      - ConnectionStrings__RabbitMQConnection=amqp://guest:guest@mt-rabbit-mq:5672
       - ConnectionStrings__DefaultConnection=Server=pgdb;Database=medical_records_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
     networks:
       - dev
@@ -42,12 +42,12 @@ services:
       - "mt-rabbit-mq"
     container_name: patients-service
     ports:
-      - "6050:5000"
+      - "5000:5000"
     build:
       context: .
       dockerfile: ../PatientsService/Dockerfile
     environment:
-      - RabbitMQ__Host=mt-rabbit-mq
+      - ConnectionStrings__RabbitMQConnection=amqp://guest:guest@mt-rabbit-mq:5672
       - ConnectionStrings__DefaultConnection=Server=pgdb;Database=patients_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
     networks:
       - dev

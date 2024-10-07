@@ -10,9 +10,13 @@ public static class SetupServices
         IWebHostEnvironment environment
     )
     {
+
+        string? host = configuration.GetSection("Services")
+                .GetSection("patients-data")
+                .GetValue<string>("http");
+
         services.AddHttpClient<PatientsServiceClient>(client =>
         {
-            string? host = configuration.GetSection("PatientsServiceClientSettings").GetValue<string>("Host");
             client.BaseAddress = new Uri(host);
         });
     }

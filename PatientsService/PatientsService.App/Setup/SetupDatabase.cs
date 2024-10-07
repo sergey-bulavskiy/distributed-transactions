@@ -13,24 +13,20 @@ public class SetupDatabase
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // this is needed for OpenIdDict and must go before .UseOpenIddict()
-        services.AddMemoryCache(options =>
-        {
-            options.SizeLimit = null;
-        });
+        services.AddMemoryCache(options => { options.SizeLimit = null; });
+
 
         services
-            .AddEntityFrameworkNpgsql()
-            .AddDbContext<PatientsContext>(
-                (provider, opt) =>
-                {
-                    opt.UseNpgsql(connectionString);
-                }
+            .AddDbContextPool<PatientsContext>(
+                (provider, opt) => { opt.UseNpgsql(connectionString); }
             );
+        
+        builder.EnrichNpgsqlDbContext<PatientsContext>();
 
         services
             .AddScoped<Func<PatientsContext>>(provider => () => CreateDbContext(provider));
     }
-    
+
     public static PatientsContext CreateDbContext(IServiceProvider provider)
     {
         return new PatientsContext(provider.GetRequiredService<DbContextOptions<PatientsContext>>());
