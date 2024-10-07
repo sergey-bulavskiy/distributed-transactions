@@ -19,8 +19,7 @@ public class SetupDatabase
         });
 
         services
-            .AddEntityFrameworkNpgsql()
-            .AddDbContext<PatientsContext>(
+            .AddDbContextPool<PatientsContext>(
                 (provider, opt) =>
                 {
                     opt.UseNpgsql(connectionString);
