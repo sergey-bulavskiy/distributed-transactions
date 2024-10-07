@@ -14,15 +14,14 @@ var medicalDb = postgres.AddDatabase("medicalDb");
 
 var patientsDataDb = postgres.AddDatabase("patientsDb");
 
-var medicalDataService = builder.AddProject<MedicalDataService_App>("medical-data")
+builder.AddProject<MedicalDataService_App>("medical-data")
     .WithReference(messaging, "RabbitMQConnection")
     .WithReference(medicalDb, "DefaultConnection");
 
 var patientsDataService = builder.AddProject<PatientsService_App>("patients-data")
     .WithExternalHttpEndpoints()
     .WithReference(patientsDataDb, "DefaultConnection")
-    .WithReference(messaging, "RabbitMQConnection")
-    .WithReference(medicalDataService);
+    .WithReference(messaging, "RabbitMQConnection");
 
 builder
     .AddProject<Frontend_App>("frontend")
