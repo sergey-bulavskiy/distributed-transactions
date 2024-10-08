@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: ../MedicalDataService/Dockerfile
     environment:
-      - RabbitMQ__Host=mt-rabbit-mq
+      - ConnectionStrings__RabbitMQConnection=amqp://guest:guest@mt-rabbit-mq:5672
       - ConnectionStrings__DefaultConnection=Server=pgdb;Database=medical_records_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
     networks:
       - dev
@@ -47,7 +47,7 @@ services:
       context: .
       dockerfile: ../PatientsService/Dockerfile
     environment:
-      - RabbitMQ__Host=mt-rabbit-mq
+      - ConnectionStrings__RabbitMQConnection=amqp://guest:guest@mt-rabbit-mq:5672
       - ConnectionStrings__DefaultConnection=Server=pgdb;Database=patients_db;Port=5432;Username=postgres;Password=postgres;Pooling=true;Keepalive=5;Command Timeout=60;Include Error Detail=true
     networks:
       - dev
