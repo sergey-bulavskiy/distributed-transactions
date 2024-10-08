@@ -1,13 +1,25 @@
 using System.Net.Http.Json;
 using MedicalDataService;
 using MedicalDataService.Features;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
 using PatientsService.Http;
+using Serilog;
+using Serilog.Events;
+using Xunit.Abstractions;
 
 namespace Tests.Tests;
 
 public class IntegrationTest1
 {
+    private readonly ITestOutputHelper _output;
+
+    public IntegrationTest1(ITestOutputHelper output)
+    {
+        _output = output;
+    }
+    
     // Instructions:
     // 1. Add a project reference to the target AppHost project, e.g.:
     //
@@ -22,6 +34,11 @@ public class IntegrationTest1
     {
         // Arrange
         var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.DistributedTransactionsApp>();
+        // Logs
+        // appHost.Services.AddLogging(
+        //         loggingBuilder => loggingBuilder.ClearProviders().AddXunit(_output)
+        //     );
+        
         appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
         {
             clientBuilder.AddStandardResilienceHandler();
@@ -44,7 +61,7 @@ public class IntegrationTest1
             .WaitAsync(TimeSpan.FromSeconds(30));
 
         // Magic wait.
-        //await Task.Delay(1000 * 15);
+        //await Task.Delay(1000 * 30);
 
         var guid = Guid.NewGuid();
         var patientToCreate = new CreatePatientDto("firstName_" + guid.ToString("N").Substring(0, 5), "lastName",
