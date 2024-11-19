@@ -61,7 +61,7 @@ services:
       - POSTGRES_DB=employee
     ports:
       - "5432:5432"
-    restart: always
+    restat: always
     volumes:
       - postgres-volume:/var/lib/postgresql/data
     networks:
