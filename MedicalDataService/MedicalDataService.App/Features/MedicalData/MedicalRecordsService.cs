@@ -1,6 +1,7 @@
 ﻿using Libs.Messages;
 using MassTransit;
 using MedicalDataService.Domain;
+using MedicalDataService.Features;
 using MedicalDataService.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,4 +38,24 @@ public class MedicalRecordsService(
         await _medicalDataContext.MedicalRecords.Where(x => x.PatientsId == patientId)
             .ExecuteDeleteAsync();
     }
+
+    public async Task<List<PatientsMedicalRecordDto>> GetMedicalRecords()
+    {
+        _logger.LogInformation("Requesting medical records from db.");
+
+        List<PatientsMedicalRecord> dbRecords = await _medicalDataContext
+            .MedicalRecords
+            .AsNoTracking()
+            .ToListAsync();
+
+        var dtos = dbRecords
+            .Select(dbr => new PatientsMedicalRecordDto(dbr.Id, dbr.PatientsId))
+            .ToList();
+
+        return dtos;
+    }
+}
+
+public record PatientsMedicalRecordDto(Guid Id, Guid PatientsId)
+{
 }
